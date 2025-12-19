@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sos:Capabilities version="1.0.0" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sos="http://www.opengis.net/sos/1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ows="http://www.opengis.net/ows/1.1" xmlns:ogc="http://www.opengis.net/ogc" xmlns:gml="http://www.opengis.net/gml" xsi:schemaLocation="http://www.opengis.net/sos/1.0 http://schemas.opengis.net/sos/1.0.0/sosGetCapabilities.xsd">
+<!-- Service identification should be adapted to data provider -->
+	<ows:ServiceIdentification>
+		<ows:Title>GIN Groundwater Level SOS service</ows:Title>
+		<ows:Abstract>This service provide groundwater level observations from a large collection of water wells in Ontario.  The service has been set up for an OGC interoperability experiment where data from Canada and United States of America are to be integrated into a single seamless data feed</ows:Abstract>
+		<ows:Keywords>
+			<ows:Keyword>groundwater,water level, water well, observations, Ontario, Great Lakes bassin, Canada</ows:Keyword>
+		</ows:Keywords>
+		<ows:ServiceType codeSpace="http://opengeospatial.net">OGC:SOS</ows:ServiceType>
+		<ows:ServiceTypeVersion>0.0.0</ows:ServiceTypeVersion>
+		<ows:Profile>GIN</ows:Profile>
+		<ows:Fees>NONE</ows:Fees>
+		<ows:AccessConstraints>The data is the property of the goverment of Ontario and is subject to use clause prescribed by the province of Ontario.</ows:AccessConstraints>
+	</ows:ServiceIdentification>
+	<ows:ServiceProvider>
+		<ows:ProviderName>Natural Resources of Canada, Earth Sciences Sector, Geological Survey of Canada</ows:ProviderName>
+		<ows:ProviderSite xlink:href="http://ngwd-bdnes.cits.nrcan.gc.ca/service/api_ngwds/en/index.html"/>
+		<ows:ServiceContact>
+			<ows:IndividualName>Eric Boisvert</ows:IndividualName>
+			<ows:PositionName>Research officer</ows:PositionName>
+			<ows:ContactInfo>
+				<ows:Phone>
+					<ows:Voice>1-418-654-3705</ows:Voice>
+					<ows:Facsimile>1-418-654-2615</ows:Facsimile>
+				</ows:Phone>
+				<ows:Address>
+					<ows:DeliveryPoint>Geological Survey of Canada, Quebec division</ows:DeliveryPoint>
+					<ows:City>Québec</ows:City>
+					<ows:AdministrativeArea>Québec</ows:AdministrativeArea>
+					<ows:PostalCode>G1K 9A9</ows:PostalCode>
+					<ows:Country>Canada</ows:Country>
+					<ows:ElectronicMailAddress>eboisver@nrcan.gc.ca</ows:ElectronicMailAddress>
+				</ows:Address>
+			</ows:ContactInfo>
+		</ows:ServiceContact>
+	</ows:ServiceProvider>
+	<!-- Operation metadata should probable remain as is, except for URL of service end point.  Note that the URL are not the same from one operation to the other. It is up to the provider / implementation -->
+	<ows:OperationsMetadata>
+		<ows:Operation name="GetCapabilities">
+			<ows:DCP>
+				<ows:HTTP>
+					<ows:Get xlink:href="http://ngwd-bdnes.cits.nrcan.gc.ca/service/gin/sos/GetCapabilities"/>
+					<ows:Post xlink:href="http://ngwd-bdnes.cits.nrcan.gc.ca/service/gin/sos/GetCapabilities"/>
+				</ows:HTTP>
+			</ows:DCP>
+			<ows:Parameter name="Sections">
+				<ows:AllowedValues>
+					<ows:Value>ServiceIdentification</ows:Value>
+					<ows:Value>ServiceProvider</ows:Value>
+					<ows:Value>OperationsMetadata</ows:Value>
+					<ows:Value>Contents</ows:Value>
+					<ows:Value>Filter_Capabilities</ows:Value>
+					<ows:Value>All</ows:Value>
+				</ows:AllowedValues>
+			</ows:Parameter>
+		</ows:Operation>
+		<ows:Operation name="GetObservation">
+			<ows:DCP>
+				<ows:HTTP>
+					<ows:Post xlink:href="http://ngwd-bdnes.cits.nrcan.gc.ca/service/gin/sos/GetObservation"/>
+				</ows:HTTP>
+			</ows:DCP>
+		</ows:Operation>
+		<ows:Operation name="DescribeSensor">
+			<ows:DCP>
+				<ows:HTTP>
+					<ows:Post xlink:href="http://ngwd-bdnes.cits.nrcan.gc.ca/service/gin/sos/DescribeSensor"/>
+				</ows:HTTP>
+			</ows:DCP>
+		</ows:Operation>
+		<ows:Parameter name="service">
+			<ows:AllowedValues>
+				<ows:Value>SOS</ows:Value>
+			</ows:AllowedValues>
+		</ows:Parameter>
+		<ows:Parameter name="version">
+			<ows:AllowedValues>
+				<ows:Value>1.0.0</ows:Value>
+			</ows:AllowedValues>
+		</ows:Parameter>
+	</ows:OperationsMetadata>
+	<!-- this is the list of offering.  I only created 1 that covers all Ontario since 1875 -->
+	<sos:Contents>
+		<sos:ObservationOfferingList>
+			<sos:ObservationOffering gml:id="gw_offering-1">
+			<!-- I think this name should be the same for all the services instances -->
+				<gml:name>urn:GIN:offering:groundwaterLevel:1</gml:name>
+				<gml:srsName>EPSG:4326</gml:srsName>
+				<gml:boundedBy>
+					<gml:Envelope>
+						<gml:lowerCorner>-95.19 41.6</gml:lowerCorner>
+						<gml:upperCorner>-74.19 56.92</gml:upperCorner>
+					</gml:Envelope>
+				</gml:boundedBy>
+				<sos:time>
+					<gml:TimePeriod>
+						<gml:beginPosition>1875-05-01TS00:00:00.000Z</gml:beginPosition>
+						<gml:endPosition indeterminatePosition="now"/>
+					</gml:TimePeriod>
+				</sos:time>
+				<sos:procedure xlink:href="urn:ogc:object:Sensor:Moee"/>
+				<!-- We must agree on a URN name for this -->
+				<sos:observedProperty xlink:href="urn:ogc:def:property:OGC:GroundWaterLevel"/>
+				<sos:featureOfInterest xlink:href="urn:x-ngwd:feature:Aquifer:GreatLakesBassin"/>
+				<sos:featureOfInterest xlink:href="urn:x-ngwd:feature:Aquifer:GreatLakesBassin3"/>
+				<!-- those 2 tags means that the format is WaterML 2.0 and that the results will be wml:WaterMonitoringObservation instances -->
+				<sos:responseFormat>text/xml; subtype=&quot;WaterML/2.0&quot;</sos:responseFormat>
+				<sos:resultModel xmlns:wml="http://www.wron.net.au/waterml2">wml:WaterMonitoringObservation</sos:resultModel>
+				<!-- the result will be inside the document.  it's possible in O&M to have the result sitting in an external file, ie some ASCII or binary document that is not GML or XML-->
+				<sos:responseMode>inline</sos:responseMode>
+			</sos:ObservationOffering>
+		</sos:ObservationOfferingList>
+	</sos:Contents>
+</sos:Capabilities>

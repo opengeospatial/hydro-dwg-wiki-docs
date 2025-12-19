@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wml2:WaterMonitoringObservation xmlns:swe="http://www.opengis.net/swe/2.0" gml:id="ont.ww.5100001.1" xmlns:md="http://www.isotc211.org/2005/gmd" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:om="http://www.opengis.net/om/2.0" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:gco="http://www.isotc211.org/2005/gco" xmlns:wml2="http://www.wron.net.au/waterml2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.wron.net.au/waterml2 file:///D:/WaterML20/WaterMLSVN/WaterML2.0/trunk/GeneratedSchema_June_2010/waterml2.xsd">
+	<gml:identifier codeSpace="http://www.ene.gov.on.ca/envision/water/wells.htm">ont.ww.5100001.1</gml:identifier>
+	<om:metadata>
+		<wml2:ObservationMetadata>
+			<md:contact>
+				<md:CI_ResponsibleParty>
+				<md:organisationName>
+				<gco:CharacterString>Ontario Ministry of Environment</gco:CharacterString>
+				</md:organisationName>
+					<md:role>
+						<md:CI_RoleCode codeList="list" codeListValue="url">steward</md:CI_RoleCode>
+					</md:role>
+				</md:CI_ResponsibleParty>
+			</md:contact>
+			<md:dateStamp><gco:Date>1958-07-25</gco:Date></md:dateStamp>
+			<md:identificationInfo xlink:href="urn:OGC:unknow"/>
+			<wml2:intendedSamplingInterval gml:id="ont.ww.5100001.1.smd">
+			<gml:beginPosition>1958-07-25</gml:beginPosition>
+			<gml:endPosition>1957-07-25</gml:endPosition>
+			</wml2:intendedSamplingInterval>
+			<wml2:sampledMedium xlink:href="http://www.opengis.net/def/medium/WaterML2.0/Water"/>
+		</wml2:ObservationMetadata>
+	</om:metadata>
+	<om:phenomenonTime>
+		<gml:TimeInstant gml:id="ont.ww.5100001.1.tm">
+			<gml:timePosition>1958-07-25 00:00:00.0</gml:timePosition>
+		</gml:TimeInstant>
+	</om:phenomenonTime>
+	<om:resultTime>
+		<gml:TimeInstant gml:id="ont.ww.5100001.2.tm">
+			<gml:timePosition>1958-07-25 00:00:00.0</gml:timePosition>
+		</gml:TimeInstant>
+	</om:resultTime>
+	<om:procedure xlink:href="http://www.opengis.net/def/processType/WaterML2.0/ManualMethod"/>
+	<om:observedProperty xlink:href="urn:ogc:def:property:OGC:GroundWaterLevel"/>
+	<om:featureOfInterest xlink:href="http://ngwd-bdnes.cits.nrcan.gc.ca/service/gin/wfs/gin?REQUEST=GetFeature&amp;INFO_FORMAT=text/html&amp;FID=ont.ww.5100001"/>
+	<om:result>
+		<wml2:TimeSeries>
+			<wml2:domainExtent>
+				<gml:TimePeriod gml:id="ont.ww.5100001.1.tp">
+					<gml:beginPosition>1958-07-25 00:00:00.0</gml:beginPosition>
+					<gml:endPosition>1958-07-25 00:00:00.0</gml:endPosition>
+				</gml:TimePeriod>
+			</wml2:domainExtent>
+			<wml2:defaultDataType codeSpace="http://www.bom.gov.au/std/water/xml/">InstVal</wml2:defaultDataType>
+			<wml2:element>
+				<wml2:TimeValuePair>
+					<wml2:time>1958-07-25 00:00:00.0T00:00:00-05:00</wml2:time>
+					<wml2:value>
+						<swe:Quantity>
+							<swe:uom code="m"/>
+							<swe:value>2.1336</swe:value>
+						</swe:Quantity>
+					</wml2:value>
+				</wml2:TimeValuePair>
+			</wml2:element>
+		</wml2:TimeSeries>
+	</om:result>
+</wml2:WaterMonitoringObservation>

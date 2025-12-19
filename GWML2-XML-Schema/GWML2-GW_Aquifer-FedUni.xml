@@ -1,0 +1,437 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gml:FeatureCollection gml:id="feduni.example.aquifer" xmlns:gww="http://www.opengis.net/gwml-well/2.0" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:sam="http://www.opengis.net/sampling/2.0" xmlns:sams="http://www.opengis.net/samplingSpatial/2.0" xmlns:gu="http://xmlns.geosciml.org/GeologicUnit/3.2" xmlns:gsmlga="http://xmlns.geosciml.org/GeologicAge/3.2" xmlns:gwml2="http://www.opengis.net/gwml-nucleus/2.0" xmlns:gwml2f="http://www.opengis.net/gwml-flow/2.0" xmlns:gwml2wc="http://www.opengis.net/gwml-wellconstruction/2.0" xmlns:gwml2c="http://www.opengis.net/gwml-constituent/2.0" xmlns:gsmlem="http://xmlns.geosciml.org/EarthMaterial/3.2" xmlns:gsml="http://xmlns.geosciml.org/GeoSciML-Core/3.2" xmlns:gsmlpp="http://xmlns.geosciml.org/PhysicalProperties/3.2" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:swe="http://www.opengis.net/swe/2.0" xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:gco="http://www.isotc211.org/2005/gco" xmlns:cv="http://www.opengis.net/cv/0.2/gml32" xmlns:om="http://www.opengis.net/om/2.0" xmlns:spec="http://www.opengis.net/samplingSpecimen/2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.opengis.net/gwml/2.0 http://ngwd-bdnes.cits.nrcan.gc.ca/service/gwml/schemas/gwml2.xsd http://www.opengis.net/samplingSpecimen/2.0 http://schemas.opengis.net/samplingSpecimen/2.0/specimen.xsd">
+	<!-- Although all the GWML2 schema may not be required, this instance imports all GWML2 packages via gwml2.xsd for consistence between instance examples  -->
+	<!-- ######################### -->
+	<!-- Mapping of Federation University (FedUni) Groundwater database tables and records to the proposed GroundWaterML2 OGC standard release candidate  -->
+	<!-- File created by Bruce Simons, CSIRO, August 2014 -->
+	<!-- ######################### -->
+	<!-- Although this instance is a gml:FeatureCollection with one or more gml:featureMembers, a valid alternative is as a single gwml2:GW_Aquifer -->
+	<!-- Other related GWML2 features are referred to "byReference" using xlink:href. In most cases these could be included "inLine" (i.e. within this instance). A separate instance for each feature is provided for ease of mapping. The final aggregation of inLine vs. byReference features will be determined by the use case requirements -->
+	<!-- Where features are aggregated into single feature services the xlink:href references to URIs need to be replaced with internal # references to gml:id -->
+	<!-- ######################### -->
+	<!-- FedUni - Mapping patterns -->
+	<!-- Comments beginning 'FedUni -' are instructions for mappings between FedUni data and GWML2 -->
+	<!-- ???? Comments beginning ???? require further checking -->
+	<!-- FedUni table record pairs are referred to by the pattern [table.record] -->
+	<!-- The mapping pattern is [schema/property] = [table.record] -->
+	<!-- ######################### -->
+	<!-- FedUni - Feature IDs and identifiers -->
+	<!-- Feature IDs (gml:id) are document specific unique identifiers based on FedUni table keys and the feature type -->
+	<!-- To create the id, replace [table.record_id] with values from the appropriate table -->
+	<!-- Feature identities (gml:identifier) use the URI for the feature. This is in the format "[domain name]/[category]/[gml:id]" -->
+	<!-- Domain Name - The temporary domain name "http://www.groundwater-victoria.com.au" has been used for the feature identifiers and vocabulary term references. An appropriate persistent and organisation independent domain will need to be established.
+A redirect service, such as the SISS PID service, is required to resolve these URIs -->
+	<!-- Category - where the object is a GML Feature use "feature". Where the object is a vocabulary concept use "def". -->
+	<!-- ######################### -->
+	<!-- FedUni - gww:gwWellUnit can be used to describe [aquifer_properties], [stratigraphy] or [lithology]. As there are no connections in FedUni between these tables they will need to be delivered as separate GW_HydrogeoUnits -->
+	<!-- ???? FedUni - As gww:gwWellUnit can be used to describe GW_AquiferSystem, GW_Aquifer, GW_ConfiningBed, or GW_Basin is there anyway of distinguishing these in [aquifer_properties], [stratigraphy] and [lithology]? -->
+	<!-- This gml:featureMember is an gwml2:GW_Aquifer is from [stratigraphy] and assumes the gww:gwWellUnit is a stratigraphic unit of type GW_Aquifer.  -->
+	<gml:featureMember>
+		<!--<gww:gwWellUnit  xlink:href="http://groundwater.feduni.edu/hydrogeologicunit/feduni/feduni.hydrogeologicunit.newervolcanics" xlink:title="Newer Volcanics" xlink:role="Hydrogeologic Unit"/> -->
+		<!-- FedUni - For GW_HydrogeoUnits from [stratigraphy] gml:id = feduni.borehole.stratigraphic-unit.[bore.bore_ID].[stratigraphy.stratigraphy_id] -->
+		<gwml2:GW_Aquifer gml:id="feduni.borehole.stratigraphic-unit.51409.3770">
+			<!-- FedUni - gml:description = [stratigraphy.formation_description] -->
+			<gml:description>Newer Volcanics Formation</gml:description>
+			<!-- FedUni - gml:identifier = "http://groundwater.victoria.com.au/feature/stratigraphic-unit/[stratigraphy.stratigraphy_id]" -->
+			<gml:identifier codeSpace="http://www.ietf.org/rfc/rfc2616">http://groundwater.victoria.com.au/feature/stratigraphic-unit/3770</gml:identifier>
+			<!-- FedUni - gml:name codeSpace="http://groundwater.feduni.edu/stratigraphic-unit/code", value = stratigraphy.strat_code] -->
+			<gml:name codeSpace="http://groundwater.feduni.edu/stratigraphic-unit/code">Qvn</gml:name>
+			<!-- FedUni - gml:name codeSpace="http://groundwater.feduni.edu/stratigraphic-unit/name", value = [stratigraphy.formation_description] -->
+			<gml:name codeSpace="http://groundwater.feduni.edu/stratigraphic-unit/name">Newer Volcanics Formation</gml:name>
+			<!-- FedUni - does not record method of observing the stratigraphy - use nilReason = "missing" -->
+			<gsml:observationMethod xsi:nil="true" nilReason="missing"/>
+			<!-- gsml:purpose to indicate whether defining, typical or instance of the unit. FedUni - use "instance" -->
+			<gsml:purpose>instance</gsml:purpose>
+			<!-- gsml:occurrence allows providing the spatial representation of the GW_HydrogeoUnit. In this case the depth down the hole -->
+			<gsml:occurrence>
+				<!-- FedUni - gsml:MappedFeature is the depth down the borehole for the stratigraphic interval. gml:id=feduni.borehole.stratigraphic-unit.[bore.bore_ID].[stratigraphy.stratigraphy_id].depth -->
+				<gsml:MappedFeature gml:id="feduni.borehole.stratigraphic-unit.51409.3770.depth">
+					<!-- FedUni - the gsml:observationMethod for the interval down the Well is unknown -->
+					<gsml:observationMethod xsi:nil="true" nilReason="unknown"/>
+					<!-- FedUni - the gsml:positionalAccuracy for the interval down the Well is unknown -->
+					<gsml:positionalAccuracy xsi:nil="true" nilReason="unknown"/>
+					<!-- FedUni - What is the appropriate resolution scale for the downhole representation? 1:1000? -->
+					<gsml:resolutionScale>
+						<gmd:MD_RepresentativeFraction>
+							<gmd:denominator>
+								<!-- ???? FedUni - What is the appropriate gsml:resolutionScale? -->
+								<gco:Integer>1000</gco:Integer>
+							</gmd:denominator>
+						</gmd:MD_RepresentativeFraction>
+					</gsml:resolutionScale>
+					<!-- FedUni - gsml:samplingFrame references the Borehole that the interval occurs in.   -->
+					<gsml:samplingFrame xlink:href="http://groundwater.victoria.com.au/feature/water-well/feduni.borehole.51409"/>
+					<gsml:shape>
+						<!-- gml:LineString for the interval of the stratigraphic unit. gml:id="feduni.borehole.stratigraphic-shape.[bore.bore_ID].[stratigraphic_id]. srsName refer back to GW_Well:shape -->
+						<gml:LineString gml:id="feduni.borehole.stratigraphic-shape.51409.3770" uomLabels="m" srsDimension="1" srsName="http://groundwater.victoria.com.au/feature/water-well/feduni.borehole.51409">
+							<!-- FedUni - gml:posList = "[stratigraphy.from_m], [stratigraphy.to_m] -->
+							<gml:posList>0 19</gml:posList>
+						</gml:LineString>
+					</gsml:shape>
+					<!-- gsml:specification specifies the HydrogeoUnit the gsml:MappedFeature refers to. For FedUni this is the same as the GW_Aquifer being described, therefore use a xlink:href -->
+					<gsml:specification xlink:href="#feduni.borehole.stratigraphic-unit.51409.3770"/>
+					<!-- FedUni - Does not have any gsml:MappedFeature/gsml:metadata -->
+					<gsml:metadata xsi:nil="true" gco:nilReason="unknown"/>
+				</gsml:MappedFeature>
+			</gsml:occurrence>
+			<!--  FedUni - use gsml:relatedFeature for age data. Age is the age (older and younger) of an event (GeologicEvent) in the history (GeologicHistory) of the geologic feature (GeologicUnit)   -->
+			<!-- FedUni - The events and history of the hydrogeologic unit are unknown -->
+			<gsml:relatedFeature>
+				<!-- FedUni - gsmlga:GeologicHistory gml:id=feduni.borehole.stratigraphic-unit.[bore.bore_ID].[stratigraphy.stratigraphy_id].history -->
+				<gsmlga:GeologicHistory gml:id="feduni.borehole.stratigraphic-unit.51409.3770.history">
+					<!--FedUni - gsml:relationship xlink:title="geologic unit formation age"/ -->
+					<gsml:relationship xlink:title="geologic unit formation age"/>
+					<!-- FedUni - role of the features in the relationship is unknown -->
+					<gsml:sourceRole xsi:nil="true" nilReason="unknown"/>
+					<gsml:targetRole xsi:nil="true" nilReason="unknown"/>
+					<!-- FedUni - gsml:relatedFeature is the gsmlga:GeologicEvent associated with teh age of the stratigraphic unit -->
+					<gsml:relatedFeature>
+						<!-- FedUni - gsmlga:GeologicEvent gml:id=feduni.borehole.stratigraphic-unit.[bore.bore_ID].[stratigraphy.stratigraphy_id].event -->
+						<gsmlga:GeologicEvent gml:id="feduni.borehole.stratigraphic-unit.51409.3770.event">
+							<!-- FedUNi - gsml:observationMethod xsi:nil="true" nilReason="unknown" -->
+							<gsml:observationMethod xsi:nil="true" nilReason="unknown"/>
+							<!-- FedUni - gsml:purpose>instance</gsml:purpose -->
+							<gsml:purpose>instance</gsml:purpose>
+							<gsml:relatedFeature xsi:nil="true"/>
+							<gsml:classifier/>
+							<gsml:metadata/>
+							<!-- FedUni - gsmlga:eventProcess xsi:nil="true" xlink:href="http://www.opengis.net/def/nil/OGC/0/unknown" xlink:title="unknown" -->
+							<gsmlga:eventProcess xsi:nil="true" xlink:href="http://www.opengis.net/def/nil/OGC/0/unknown" xlink:title="unknown"/>
+							<gsmlga:numericAgeDate xsi:nil="true"/>
+							<!-- ???? FedUni - Need to map [stratigraphic.formation_age] terms to older and younger values at http://resource.geosciml.org/classifier/ics/ischart. For example where formation_age = "Plio-Pleistocene":
+gsmlga:olderNamedAge xlink:href="http://resource.geosciml.org/classifier/ics/ischart/Pliocene" xlink:title="Pliocene"
+gsmlga:youngerNamedAge xlink:href="http://resource.geosciml.org/classifier/ics/ischart/Pleistocene" xlink:title="Pleistocene"  -->
+							<gsmlga:olderNamedAge xlink:href="http://resource.geosciml.org/classifier/ics/ischart/Pliocene" xlink:title="Pliocene"/>
+							<gsmlga:youngerNamedAge xlink:href="http://resource.geosciml.org/classifier/ics/ischart/Pleistocene" xlink:title="Pleistocene"/>
+							<!-- FedUni - gsmlga:eventEnvironment xsi:nil="true" -->
+							<gsmlga:eventEnvironment xsi:nil="true"/>
+							<!-- FedUni - smlga:prototype xsi:nil="true" -->
+							<gsmlga:prototype xsi:nil="true"/>
+						</gsmlga:GeologicEvent>
+					</gsml:relatedFeature>
+				</gsmlga:GeologicHistory>
+			</gsml:relatedFeature>
+			<!-- FedUni - gsml:classifier for the stratigraphic unit is unknown -->
+			<gsml:classifier xsi:nil="true" nilReason="unknown"/>
+			<!-- FedUni - Does not have any gwml2:GW_Aquifer/gsml:metadata for stratigraphic units -->
+			<gsml:metadata xsi:nil="true" gco:nilReason="unknown"/>
+			<!-- FedUni - gu:geologicUnitType = Hydrogeologic Unit -->
+			<gu:geologicUnitType xlink:href="http://resource.geosciml.org/classifier/cgi/geologicunittype/hydrogeologic_unit" xlink:title="Hydrogeologic Unit"/>
+			<!-- FedUni - Does not have any gu:bodyMorphology -->
+			<gu:bodyMorphology xsi:nil="true" nilReason="missing"/>
+			<!-- FedUni - Does not have any gu:unitComposition (broad compositional term like "I-type") -->
+			<gu:unitComposition xsi:nil="true" nilReason="missing"/>
+			<!-- FedUni - Does not have any gu:exposureColor -->
+			<gu:exposureColor xsi:nil="true" nilReason="missing"/>
+			<!-- FedUni - Does not have any gu:outcropCharacter -->
+			<gu:outcropCharacter xsi:nil="true" nilReason="missing"/>
+			<!-- FedUni - Does not have any gu:rank -->
+			<gu:rank xsi:nil="true" nilReason="missing"/>
+			<!-- FedUni - Does not have any gu:unitThickness -->
+			<gu:unitThickness xsi:nil="true" nilReason="unkown"/>
+			<!-- FedUni - As there is no connection between [stratigraphy] and [lithology] tables FedUni does not have any gu:composition -->
+			<gu:composition xsi:nil="true" nilReason="unkown"/>
+			<!-- FedUni - Does not have any gu:metamorphicCharacter  -->
+			<gu:metamorphicCharacter xsi:nil="true" nilReason="missing"/>
+			<!-- FedUni - Does not have any gu:part  -->
+			<gu:part xsi:nil="true" nilReason="missing"/>
+			<!-- FedUni - gu:physicalProperty is duplicated by gwml2:gwUnitProperty  -->
+			<gu:physicalProperty xsi:nil="true" nilReason="missing"/>
+			<!-- FedUni - Does not have any gu:alterationCharacter   -->
+			<gu:alterationCharacter xsi:nil="true" nilReason="missing"/>
+			<!-- FedUni - Does not have any gu:bedding   -->
+			<gu:bedding xsi:nil="true" nilReason="missing"/>
+			<!-- FedUni - Does not have any gu:geochemistry   -->
+			<gu:geochemistry xsi:nil="true" nilReason="missing"/>
+			<!-- gwml2:gwUnitProperty is for other GW_HydrogeoUnit properties. No other properties are required for stratigraphic units    -->
+			<!-- FedUni - aquifer properties are unknown for stratigraphic units -->
+			<gwml2:gwUnitMedia xsi:nil="true"/>
+			<gwml2:gwUnitWaterBudget xsi:nil="true"/>
+			<gwml2:gwUnitRecharge xsi:nil="true" nilReason="unknown"/>
+			<gwml2:gwUnitDischarge xsi:nil="true" nilReason="unknown"/>
+			<gwml2:gwUnitVulnerability xsi:nil="true" nilReason="unknown"/>
+			<gwml2:gwAquiferType xsi:nil="true"/>
+			<gwml2:gwAquiferIsExploited xsi:nil="true" nilReason="unknown"/>
+			<gwml2:gwAquiferIsMain xsi:nil="true" nilReason="unknown"/>
+			<gwml2:gwConfiningBed nilReason="unknown"/>
+		</gwml2:GW_Aquifer>
+	</gml:featureMember>
+	<gml:featureMember>
+		<!-- This example is from [lithology] and assumes the gww:gwWellUnit is a lithologic unit of type GW_Aquifer. 
+gml:id = feduni.borehole.lithologic-unit.[bore.bore_ID].[lithology.lithology_id] -->
+		<gwml2:GW_Aquifer gml:id="feduni.borehole.lithologic-unit.51409.242285">
+			<!-- FedUni - gml:description = [lithology.lithology_description] -->
+			<gml:description>SANDSTONE, well cemented sands of granitic origin intermixed with granite clasts</gml:description>
+			<!-- FedUni - gml:identifier = "http://groundwater.victoria.com.au/feature/lithologic-unit/[lithology.lithology_id]" -->
+			<gml:identifier codeSpace="http://www.ietf.org/rfc/rfc2616">http://groundwater.victoria.com.au/feature/lithologic-unit/242285</gml:identifier>
+			<!-- FedUni - Use [lithology.log_type] to record method of observing the lithology. "G" = "geologists' log" -->
+			<gsml:observationMethod xlink:title="geologists' log"/>
+			<!-- gsml:purpose to indicate whether defining, typical or instance of the unit. -->
+			<!-- FedUni - use "instance" -->
+			<gsml:purpose>instance</gsml:purpose>
+			<!-- gsml:occurrence allows providing the spatial representation of the GW_HydrogeoUnit. In this case the depth down the hole -->
+			<gsml:occurrence>
+				<!-- FedUni - gsml:MappedFeature is the depth down the borehole for the lithology interval. gml:id=feduni.borehole.lithologic-unit.[bore.bore_ID].[lithology.lithology_id].depth -->
+				<gsml:MappedFeature gml:id="feduni.borehole.lithologic-unit.51409.242285.depth">
+					<!-- FedUni - the gsml:observationMethod for the interval down the Well is unknown -->
+					<gsml:observationMethod xsi:nil="true" nilReason="unknown"/>
+					<!-- FedUni - the gsml:positionalAccuracy for the interval down the Well is unknown -->
+					<gsml:positionalAccuracy xsi:nil="true" nilReason="unknown"/>
+					<!-- FedUni - What is the appropriate resolution scale for the downhole representation? 1:1000? -->
+					<gsml:resolutionScale>
+						<gmd:MD_RepresentativeFraction>
+							<gmd:denominator>
+								<!-- ???? FedUni - What is the appropriate gsml:resolutionScale? -->
+								<gco:Integer>1000</gco:Integer>
+							</gmd:denominator>
+						</gmd:MD_RepresentativeFraction>
+					</gsml:resolutionScale>
+					<!-- FedUni - gsml:samplingFrame references the shape of the Borehole that the interval occurs in.   -->
+					<gsml:samplingFrame xlink:href="http://groundwater.victoria.com.au/feature/water-well/feduni.borehole.51409"/>
+					<gsml:shape>
+						<!-- gml:LineString for the interval of the lithology unit. gml:id="feduni.borehole.lithologic-shape.[bore.bore_ID].[lithology.lithology_id]. srsName refer back to GW_Well -->
+						<gml:LineString gml:id="feduni.borehole.lithologic-shape.51409.242285" uomLabels="m" srsDimension="1" srsName="ttp://groundwater.victoria.com.au/feature/water-well/feduni.borehole.51409">
+							<!-- FedUni - gml:posList = "[lithology.from_m], [lithology.to_m] -->
+							<gml:posList>0 26</gml:posList>
+						</gml:LineString>
+					</gsml:shape>
+					<!-- gsml:specification specifies the HydrogeoUnit the gsml:MappedFeature refers to. -->
+					<!-- FedUni - this is the same as the GW_Aquifer being described, therefore use a xlink:href -->
+					<gsml:specification xlink:href="#feduni.borehole.lithologic-unit.51409.242285"/>
+					<!-- FedUni - Does not have any gsml:MappedFeature/gsml:metadata -->
+					<gsml:metadata xsi:nil="true" gco:nilReason="unknown"/>
+				</gsml:MappedFeature>
+			</gsml:occurrence>
+			<gsml:relatedFeature xsi:nil="true" nilReason="unknown"/>
+			<!-- FedUni - gsml:classifier for the lithology unit is unknown -->
+			<gsml:classifier xsi:nil="true" nilReason="unknown"/>
+			<!-- FedUni - Does not have any gwml2:GW_Aquifer/gsml:metadata for lithology units -->
+			<gsml:metadata xsi:nil="true" gco:nilReason="unknown"/>
+			<!-- FedUni - gu:geologicUnitType = Hydrogeologic Unit -->
+			<gu:geologicUnitType xlink:href="http://resource.geosciml.org/classifier/cgi/geologicunittype/hydrogeologic_unit" xlink:title="Hydrogeologic Unit"/>
+			<!-- FedUni - Does not have any gu:bodyMorphology -->
+			<gu:bodyMorphology xsi:nil="true" nilReason="missing"/>
+			<!-- FedUni - Does not have any gu:unitComposition (broad compositional term like "I-type") -->
+			<gu:unitComposition xsi:nil="true" nilReason="missing"/>
+			<!-- FedUni - Does not have any gu:exposureColor -->
+			<gu:exposureColor xsi:nil="true" nilReason="missing"/>
+			<!-- FedUni - Does not have any gu:outcropCharacter -->
+			<gu:outcropCharacter xsi:nil="true" nilReason="missing"/>
+			<!-- FedUni - Does not have any gu:rank -->
+			<gu:rank xsi:nil="true" nilReason="missing"/>
+			<!-- FedUni - Does not have any gu:unitThickness -->
+			<gu:unitThickness xsi:nil="true" nilReason="unkown"/>
+			<!-- FedUni - As there is no classification of the lithology in [lithology], only a free text description,there is no gu:composition -->
+			<gu:composition xsi:nil="true" nilReason="unkown"/>
+			<!-- FedUni - Does not have any gu:metamorphicCharacter  -->
+			<gu:metamorphicCharacter xsi:nil="true" nilReason="missing"/>
+			<!-- FedUni - Does not have any gu:part  -->
+			<gu:part xsi:nil="true" nilReason="missing"/>
+			<!-- FedUni - gu:physicalProperty is duplicated by gwml2:gwUnitProperty  -->
+			<gu:physicalProperty xsi:nil="true" nilReason="missing"/>
+			<!-- FedUni - Does not have any gu:alterationCharacter   -->
+			<gu:alterationCharacter xsi:nil="true" nilReason="missing"/>
+			<!-- FedUni - Does not have any gu:bedding   -->
+			<gu:bedding xsi:nil="true" nilReason="missing"/>
+			<!-- FedUni - Does not have any gu:geochemistry   -->
+			<gu:geochemistry xsi:nil="true" nilReason="missing"/>
+			<!-- gwml2:gwUnitProperty is for other GW_HydrogeoUnit properties. No other properties are required for stratigraphic units    -->
+			<!-- FedUni - aquifer properties are unknown for stratigraphic units -->
+			<gwml2:gwUnitMedia/>
+			<gwml2:gwUnitWaterBudget xsi:nil="true"/>
+			<gwml2:gwUnitRecharge xsi:nil="true" nilReason="unknown"/>
+			<gwml2:gwUnitDischarge xsi:nil="true" nilReason="unknown"/>
+			<gwml2:gwUnitVulnerability xsi:nil="true" nilReason="unknown"/>
+			<gwml2:gwAquiferType xsi:nil="true"/>
+			<gwml2:gwAquiferIsExploited xsi:nil="true" nilReason="unknown"/>
+			<gwml2:gwAquiferIsMain xsi:nil="true" nilReason="unknown"/>
+			<gwml2:gwConfiningBed nilReason="unknown"/>
+		</gwml2:GW_Aquifer>
+	</gml:featureMember>
+	<gml:featureMember>
+		<!-- FedUni - This example is of a GW_Aquifer from [aquifer_property] -->
+		<!--<gwml2:GW_Aquifer gml:id="feduni.borehole.aquifer.[aquifer_property.bore_id_fk].[aquifer_property.aquifer_property_id]"> -->
+		<gwml2:GW_Aquifer gml:id="feduni.borehole.aquifer.51409.1947">
+			<!-- FedUni - No gml:description -->
+			<!-- FedUni - gml:identifier = "http://groundwater.victoria.com.au/feature/aquifer/[aquifer_property.bore_id_fk].[aquifer_property.aquifer_property_id]" -->
+			<gml:identifier codeSpace="http://www.ietf.org/rfc/rfc2616">http://groundwater.victoria.com.au/feature/aquifer/51409.1947</gml:identifier>
+			<!-- FedUni - gml:name codeSpace="http://groundwater.feduni.edu/aquifer-property/name", value = [aquifer_property.aq_name] -->
+			<gml:name codeSpace="http://groundwater.feduni.edu/aquifer-property/name">Newer Volcanics Formation</gml:name>
+			<!-- FedUni - does not record method of observing the aquifer - use nilReason = "missing" -->
+			<gsml:observationMethod xsi:nil="true" nilReason="missing"/>
+			<!-- gsml:purpose indicates whether defining, typical or instance of the unit. -->
+			<!-- FedUni - use "instance" -->
+			<gsml:purpose>instance</gsml:purpose>
+			<!-- gsml:occurrence allows providing the spatial representation of the GW_HydrogeoUnit. -->
+			<gsml:occurrence>
+				<!-- FedUni - gsml:MappedFeature is the depth down the borehole for the aquifer interval. gml:id=feduni.borehole.aquifer.[bore.bore_ID].[aquifer_property.aquifer_property_id].depth -->
+				<gsml:MappedFeature gml:id="feduni.borehole.aquifer.51409.1947.depth">
+					<!-- FedUni - the gsml:observationMethod for the interval down the Well is unknown -->
+					<gsml:observationMethod xsi:nil="true" nilReason="unknown"/>
+					<!-- FedUni - the gsml:positionalAccuracy for the interval down the Well is unknown -->
+					<gsml:positionalAccuracy xsi:nil="true" nilReason="unknown"/>
+					<gsml:resolutionScale>
+						<gmd:MD_RepresentativeFraction>
+							<gmd:denominator>
+								<!-- ???? FedUni - What is the appropriate gsml:resolutionScale? -->
+								<gco:Integer>1000</gco:Integer>
+							</gmd:denominator>
+						</gmd:MD_RepresentativeFraction>
+					</gsml:resolutionScale>
+					<!-- FedUni - gsml:samplingFrame references the shape of the Borehole that the interval occurs in.   -->
+					<gsml:samplingFrame xlink:href="http://groundwater.victoria.com.au/feature/water-well/feduni.borehole.51409"/>
+					<gsml:shape>
+						<!-- FedUni - gml:LineString for the interval of the aquifer. gml:id="feduni.borehole.aquifer-shape.[bore.bore_ID].[aquifer_property.aquifer_property._id]. srsName refer back to GW_Well -->
+						<gml:LineString gml:id="feduni.borehole.aquifer-shape.51409.242285" uomLabels="m" srsDimension="1" srsName="ttp://groundwater.victoria.com.au/feature/water-well/feduni.borehole.51409">
+							<!-- FedUni - gml:posList = "[aquifer_property.aq_from], [aquifer_property.aq_to] -->
+							<gml:posList>0 0</gml:posList>
+						</gml:LineString>
+					</gsml:shape>
+					<!-- gsml:specification specifies the HydrogeoUnit the gsml:MappedFeature refers to. -->
+					<!-- FedUni - this is the same as the GW_Aquifer being described, therefore use a xlink:href -->
+					<gsml:specification xlink:href="#feduni.borehole.lithologic-unit.51409.242285"/>
+					<!-- FedUni - Does not have any gsml:MappedFeature/gsml:metadata -->
+					<gsml:metadata xsi:nil="true" gco:nilReason="unknown"/>
+				</gsml:MappedFeature>
+			</gsml:occurrence>
+			<!-- FedUni - could use gsml:relatedFeature to map between the [aquifer_property], [stratigraphy] and [lithology] tables based on {bore_id} and from-to depths if required -->
+			<gsml:relatedFeature xsi:nil="true" nilReason="unknown"/>
+			<!-- FedUni - gsml:classifier is unknown -->
+			<gsml:classifier xsi:nil="true" nilReason="unknown"/>
+			<!-- FedUni - gwml2:GW_Aquifer/gsml:metadata = [aquifer_property.aq_source]. Appears lots of other metadata properties are mandatory for MD_Metadata so have left this out as it appears too much baggage just to deliver a citation title  -->
+			<gsml:metadata xsi:nil="true" gco:nilReason="withheld"/>
+			<!--		<gmd:MD_Metadata>
+					<gmd:contact gco:nilReason="unknown"/>
+					<gmd:dateStamp gco:nilReason="unknown"/>
+					<gmd:identificationInfo>
+						<gmd:MD_DataIdentification>
+							<gmd:citation>
+								<gmd:CI_Citation>
+									<gmd:title>
+										<gco:CharacterString>HydroTechnology (1994) report</gco:CharacterString>
+									</gmd:title>
+									<gmd:date gco:nilReason="missing"/>
+								</gmd:CI_Citation>
+							</gmd:citation>
+						<gmd:abstract gco:nilReason="missing"/>
+						</gmd:MD_DataIdentification>
+					</gmd:identificationInfo>
+				</gmd:MD_Metadata> 
+			</gsml:metadata> -->
+			<!-- FedUni - gu:geologicUnitType = Hydrogeologic Unit -->
+			<gu:geologicUnitType xlink:href="http://resource.geosciml.org/classifier/cgi/geologicunittype/hydrogeologic_unit" xlink:title="Hydrogeologic Unit"/>
+			<!-- FedUni - [aquifer_property] does not have any gu:bodyMorphology -->
+			<gu:bodyMorphology xsi:nil="true" nilReason="missing"/>
+			<!-- FedUni - [aquifer_property] does not have any gu:unitComposition (broad compositional term like "I-type" , "peraluminous'-->
+			<gu:unitComposition xsi:nil="true" nilReason="missing"/>
+			<!-- FedUni - [aquifer_property] does not have any gu:exposureColor -->
+			<gu:exposureColor xsi:nil="true" nilReason="missing"/>
+			<!-- FedUni - [aquifer_property] does not have any gu:outcropCharacter -->
+			<gu:outcropCharacter xsi:nil="true" nilReason="missing"/>
+			<!-- FedUni - [aquifer_property] does not have any gu:rank -->
+			<gu:rank xsi:nil="true" nilReason="missing"/>
+			<!-- FedUni - [aquifer_property] does not have any gu:unitThickness -->
+			<gu:unitThickness xsi:nil="true" nilReason="unkown"/>
+			<!-- ???? FedUni -  Need gu:composition = [aquifer_property.lithology] codes mapped to CGI vocabularies. For example "BASA" = {xlink:href = "http://resource.geosciml.org/classifier/cgi/lithology/basalt" xlink:title="basalt"} -->
+			<gu:composition>
+				<gu:CompositionPart>
+					<gu:role xlink:href="http://resource.geosciml.org/classifier/cgi/compositionpartrole/dominant_part" xlink:title="dominant part"/>
+					<gu:material>
+						<!-- FedUni - gsmlem:RockMaterial gml:id= feduni.aquifer-property-lithology.[aquifer_property.aquifer_property_id] -->
+						<gsmlem:RockMaterial gml:id="feduni.aquifer-property-lithology.1947">
+							<gsmlem:color xsi:nil="true" nilReason="unknown"/>
+							<gsmlem:purpose>instance</gsmlem:purpose>
+							<gsmlem:physicalProperty xsi:nil="true" nilReason="unknown"/>
+							<gsmlem:geochemistry xsi:nil="true" nilReason="unknown"/>
+							<gsmlem:metadata xsi:nil="true" gco:nilReason="missing"/>
+							<gsmlem:compositionCategory xsi:nil="true" nilReason="unknown"/>
+							<gsmlem:geneticCategory xsi:nil="true" nilReason="unknown"/>
+							<gsmlem:constituent xsi:nil="true" nilReason="unknown"/>
+							<gsmlem:particleGeometry xsi:nil="true" nilReason="unknown"/>
+							<gsmlem:consolidationDegree xsi:nil="true" nilReason="unknown"/>
+							<!-- ???? FedUni -  Need gsmlem:lithology  = [aquifer_property.lithology] codes mapped to CGI vocabularies. -->
+							<gsmlem:lithology xlink:href="http://resource.geosciml.org/classifier/cgi/lithology/basalt" xlink:title="basalt"/>
+							<!-- FedUni -  second gsmlem:lithology  = [aquifer_property.aq_material] values mapped to CGI vocabularies.For example "basalt" = {xlink:href = "http://resource.geosciml.org/classifier/cgi/lithology/basalt" xlink:title="basalt"}  -->
+							<!-- ???? Or is [aquifer_property.aq_material] = gwUnitMedia? -->
+							<gsmlem:lithology xlink:href="http://resource.geosciml.org/classifier/cgi/lithology/basalt" xlink:title="basalt"/>
+							<gsmlem:metamorphicProperties xsi:nil="true" nilReason="unknown"/>
+							<gsmlem:alterationProperties xsi:nil="true" nilReason="unknown"/>
+							<gsmlem:fabric xsi:nil="true" nilReason="unknown"/>
+						</gsmlem:RockMaterial>
+					</gu:material>
+					<gu:proportion>
+					<!-- FedUni - gu:proportion is not stored. assuming 100% -->
+						<swe:QuantityRange>
+							<swe:uom code="%25" xlink:href="http://qudt.org/vocab/unit#Percent" xlink:title="percent"/>
+							<swe:value>100 100</swe:value>
+						</swe:QuantityRange>
+					</gu:proportion>
+				</gu:CompositionPart>
+			</gu:composition>
+			<!-- FedUni - [aquifer_property] does not have any gu:metamorphicCharacter  -->
+			<gu:metamorphicCharacter xsi:nil="true" nilReason="missing"/>
+			<!-- FedUni - [aquifer_property] does not have any gu:part  -->
+			<gu:part xsi:nil="true" nilReason="missing"/>
+			<!-- FedUni - gu:physicalProperty is duplicated by gwml2:gwUnitProperty  -->
+			<gu:physicalProperty xsi:nil="true" nilReason="missing"/>
+			<!-- FedUni - [aquifer_property] does not have any gu:alterationCharacter   -->
+			<gu:alterationCharacter xsi:nil="true" nilReason="missing"/>
+			<!-- FedUni - [aquifer_property] does not have any gu:bedding   -->
+			<gu:bedding xsi:nil="true" nilReason="missing"/>
+			<!-- FedUni - [aquifer_property] does not have any gu:geochemistry   -->
+			<gu:geochemistry xsi:nil="true" nilReason="missing"/>
+			<!-- ???? gwml2:gwUnitProperty is for other GW_HydrogeoUnit properties such as ec. Or is ec a fluid property and the relatedObservation should be from GW_FluidBody?   -->
+			<!-- FedUni - gwml2:gwUnitProperty xlink:href="http://groundwater.victoria.com.au/feature/observation/feduni.borehole.observation.[bore.bore_id].initial-ec" xlink:title="initial ec" -->
+			<gwml2:gwUnitProperty xlink:href="http://groundwater.victoria.com.au/feature/observation/feduni.borehole.observation.51409.initial-ec" xlink:title="initial ec"/>
+				
+			<!-- ???? FedUni - What is [bore.initial.tds]? If a property of the aquifer (total dissolved solids?) then use gwml2:gwUnitProperty as per [bore.initial_ec] -->
+			<!-- FedUni - gwml2:gwUnitMedia = xlink:title="[aquifer_property.aq_material]"  -->
+			<gwml2:gwUnitMedia xlink:href="http://resource.geosciml.org/classifier/cgi/lithology/basalt" xlink:title="basalt"></gwml2:gwUnitMedia>
+			<!-- FedUni - does not have gwml2:gwUnitWaterBudget gwml2:gwUnitRecharge gwml2:gwUnitDischarge gwml2:gwUnitVulnerability gwml2:gwManagementArea -->
+			<!-- ???? FedUni - need to work out how to deliver [aquifer_property] water properties 'water_from', 'water_to', 'pdepth', 'prate', 'ptime', 'ddown', 'rtime', 'ptype',  'parameter_source' -->
+			<gwml2:gwUnitWaterBudget xsi:nil="true"/>
+			<gwml2:gwUnitRecharge xsi:nil="true" nilReason="unknown"/>
+			<gwml2:gwUnitDischarge xsi:nil="true" nilReason="unknown"/>
+			<gwml2:gwUnitVulnerability xsi:nil="true" nilReason="unknown"/>
+			<gwml2:gwManagementArea xsi:nil="true" nilReason="inapplicable"/>
+			<!-- FedUni - gwml2:gwUnitFluidBody xlin:href=" -->
+			<gwml2:gwUnitFluidBody>
+				<!-- FedUni - gwml2:GW_UnitFluidProperty gml:id="feduni.borehole.aquifer_property.[aquifer_property.bore_id_fk].[aquifer_property.aquifer_property_id]" -->
+				<gwml2:GW_UnitFluidProperty gml:id="feduni.borehole.aquifer_property.51409.1947">
+				<!-- ################################### -->
+				<!-- Need to make OM_Observations byReference -->
+					<!-- FedUni - gwml2:gwHydraulicConductivity xlink:href= "http://groundwater.victoria.com.au/feature/observation/feduni.borehole.observation.[aquifer_property.bore_id_fk].[aquifer_property.hydraulic_conductivity].hydraulic-conductivity -->
+					<gwml2:gwHydraulicConductivity xlink:href="http://groundwater.victoria.com.au/feature/observation/feduni.borehole.observation.51409.1947.hydraulic-conductivity"/>
+				<!-- FedUni - gwml2:gwStorativity xlink:href="http://groundwater.victoria.com.au/feature/observation/feduni.borehole.observation.[aquifer_property.bore_id_fk].[aquifer_property.aquifer_property_id].storativity -->		
+					<gwml2:gwStorativity xlink:href="http://groundwater.victoria.com.au/feature/observation/feduni.borehole.observation.51409.1947.storativity"/>
+						<!-- FedUni - gwml2:gwTransmissivity xlink:href= "http://groundwater.victoria.com.au/feature/observation/feduni.borehole.observation.[aquifer_property.bore_id_fk].[aquifer_property.aquifer_property_id].storativity"  -->
+					<gwml2:gwTransmissivity xlink:href="http://groundwater.victoria.com.au/feature/observation/feduni.borehole.observation.51409.1947.transmissivity"/>
+					<!-- FedUni - gwml2:gwTransmissivity xlink:href= "http://groundwater.victoria.com.au/feature/observation/feduni.borehole.observation.[aquifer_property.bore_id_fk].[aquifer_property.aquifer_property_id].yield"  -->
+					<gwml2:gwYield  xlink:href="http://groundwater.victoria.com.au/feature/observation/feduni.borehole.observation.51409.1947.yield"/>
+					<!-- ???? FedUni - list gwml2:gwUnitFluidBody based on [hydrochemistry.hydrochemistry_id] where [hydrochemistry.bore_id_fk] = [aquifer_property.bore_id_fk] and the depths in [hydrochemistry] are within the depths in [aquifer_property -->
+					<!-- FedUni - list gwml2:gwUnitFluidBody xlink:href="http://groundwater.victoria.com.au/feature/fluid-body/feduni.borehole.fluid-body.[bore.bore_id][hydrochemistry.hydrochemistry_id] -->
+					<gwml2:gwUnitFluidBody xlink:href="http://groundwater.victoria.com.au/feature/fluid-body/feduni.borehole.fluid-body.51409.44574"/>
+			
+					<!-- FedUni - gwml2:gwFluidBodyUnit is a reference back to the GW_Aquifer containing the GW_UnitFluidProperty properties (i.e. the body containing the GW_FluidBody -->
+					<!-- FedUni - can use either xlink:href to gwml2:GW_Aquifer gml:id (xlink:href="#feduni.borehole.aquifer.51409.1947") or to gwml2:GW_Aquifer gml:identifier (xlink:href="http://groundwater.victoria.com.au/feature/aquifer/51409.1947") -->
+					<gwml2:gwFluidBodyUnit xlink:href="http://groundwater.victoria.com.au/feature/aquifer/51409.1947"/>
+				</gwml2:GW_UnitFluidProperty>
+			</gwml2:gwUnitFluidBody>
+			<!-- gwml2:gwUnitVoid to capture GW_HydrogeoVoid and GW_UnitVoidProperty properties -->
+			<!-- FedUni - does FedUni does not have any properties for Voids (permeability, porosity) -->
+			<gwml2:gwUnitVoid xsi:nil="true" nilReason="missing"/>
+			<!--
+			<gwml2:GW_UnitVoidProperty>
+			<gwml2:gwPermeability></gwml2:gwPermeability>
+			<gwml2:gwPorosity></gwml2:gwPorosity>
+			<gwml2:gwUnitFluidBody></gwml2:gwUnitFluidBody>
+			<gwml2:gwUnitVoid></gwml2:gwUnitVoid>
+			</gwml2:GW_UnitVoidProperty>
+			</gwml2:gwUnitVoid> -->
+			<gwml2:gwAquiferType xsi:nil="true"/>
+			<gwml2:gwAquiferIsExploited xsi:nil="true" nilReason="unknown"/>
+			<gwml2:gwAquiferIsMain xsi:nil="true" nilReason="unknown"/>
+			<gwml2:gwConfiningBed nilReason="unknown"/>
+		</gwml2:GW_Aquifer>
+	</gml:featureMember>
+</gml:FeatureCollection>
